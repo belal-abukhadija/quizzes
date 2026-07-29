@@ -1,0 +1,342 @@
+[
+  {
+    "id": "ef-001",
+    "question": "What role does a DbContext play?",
+    "options": [
+      "It is a unit of work and a set of repositories over the database",
+      "It is a connection pool shared across the whole application",
+      "It is a code generator that produces SQL files",
+      "It is the migration history table"
+    ],
+    "correctIndex": 0,
+    "explanation": "A DbContext tracks the entities you load and change, then writes them out as one unit of work on SaveChanges. It is designed to be short-lived, typically one per request.",
+    "difficulty": "easy",
+    "tags": ["dbcontext"]
+  },
+  {
+    "id": "ef-002",
+    "question": "What does a DbSet<T> represent?",
+    "options": [
+      "A queryable collection of entities of that type, usually mapped to a table",
+      "A cached copy of every row in the table",
+      "A single database transaction",
+      "The migration definition for that entity"
+    ],
+    "correctIndex": 0,
+    "explanation": "DbSet<T> is the entry point for querying and adding entities of a type. It is IQueryable, so LINQ against it is translated into SQL rather than executed in memory.",
+    "difficulty": "easy",
+    "tags": ["dbcontext", "querying"]
+  },
+  {
+    "id": "ef-003",
+    "question": "How does SaveChanges treat multiple pending inserts, updates, and deletes?",
+    "options": [
+      "It wraps them in a single transaction that rolls back entirely on failure",
+      "It applies each change in its own transaction, committing as it goes",
+      "It applies inserts first and commits them before attempting updates",
+      "It requires you to open a transaction manually or nothing is committed"
+    ],
+    "correctIndex": 0,
+    "explanation": "SaveChanges creates a transaction if none exists, so either every tracked change is applied or none is. That makes partial writes impossible on failure.",
+    "difficulty": "medium",
+    "tags": ["savechanges", "transactions"]
+  },
+  {
+    "id": "ef-004",
+    "question": "Which method loads a related entity eagerly, in the same query?",
+    "options": ["Include()", "Attach()", "Entry()", "AsNoTracking()"],
+    "correctIndex": 0,
+    "explanation": "Include() tells EF to join in the related data as part of the original query. Without it, navigation properties are either lazily loaded or left null.",
+    "difficulty": "medium",
+    "tags": ["loading", "querying"]
+  },
+  {
+    "id": "ef-005",
+    "question": "What causes the N+1 query problem?",
+    "options": [
+      "Looping over a result set and touching a lazily loaded navigation property on each row",
+      "Calling SaveChanges once per entity instead of once per batch",
+      "Using Include() on more than one navigation property",
+      "Running a query without a WHERE clause"
+    ],
+    "correctIndex": 0,
+    "explanation": "The initial query returns N rows and each lazy navigation access fires another query, giving N+1 round trips. Eager loading with Include() collapses it back to one.",
+    "difficulty": "hard",
+    "tags": ["loading", "performance"]
+  },
+  {
+    "id": "ef-006",
+    "question": "What does AsNoTracking() change about a query?",
+    "options": [
+      "Entities are returned without change tracking, which is faster for read-only work",
+      "The query result is cached for the lifetime of the context",
+      "The query runs outside the current transaction",
+      "Related entities are no longer included"
+    ],
+    "correctIndex": 0,
+    "explanation": "Skipping the change tracker avoids building snapshots and identity-map entries, so read-only queries use less memory and time. The trade-off is that SaveChanges will not pick up edits.",
+    "difficulty": "medium",
+    "tags": ["querying", "performance"]
+  },
+  {
+    "id": "ef-007",
+    "question": "What does `dotnet ef migrations add` generate?",
+    "options": [
+      "Code describing the difference between the model and the last migration snapshot",
+      "The SQL script applied directly to the production database",
+      "A backup of the current database schema",
+      "Entity classes reverse-engineered from the database"
+    ],
+    "correctIndex": 0,
+    "explanation": "EF compares your current model against the stored snapshot and writes Up and Down methods for the delta. Applying it to a database is a separate step.",
+    "difficulty": "medium",
+    "tags": ["migrations"]
+  },
+  {
+    "id": "ef-008",
+    "question": "In EF Core, what happens when part of a LINQ query cannot be translated to SQL?",
+    "options": [
+      "It throws, rather than silently evaluating that part on the client",
+      "It silently fetches the whole table and filters in memory",
+      "It skips the untranslatable predicate and returns everything",
+      "It rewrites the query into raw SQL automatically"
+    ],
+    "correctIndex": 0,
+    "explanation": "EF Core deliberately throws instead of falling back to client evaluation for a filter, because silent client evaluation used to pull entire tables into memory unnoticed.",
+    "difficulty": "hard",
+    "tags": ["querying", "translation"]
+  },
+  {
+    "id": "ef-009",
+    "question": "Which of these is a valid entity state in the change tracker?",
+    "options": ["Detached", "Pending", "Dirty", "Committed"],
+    "correctIndex": 0,
+    "explanation": "The states are Added, Modified, Deleted, Unchanged, and Detached. Detached means the context is not tracking the entity at all.",
+    "difficulty": "medium",
+    "tags": ["change-tracking"]
+  },
+  {
+    "id": "ef-010",
+    "question": "How does SingleOrDefault() differ from FirstOrDefault()?",
+    "options": [
+      "SingleOrDefault() throws if more than one row matches; FirstOrDefault() just takes the first",
+      "FirstOrDefault() throws if more than one row matches; SingleOrDefault() does not",
+      "SingleOrDefault() throws when nothing matches; FirstOrDefault() returns null",
+      "They behave identically but SingleOrDefault() requires an ORDER BY"
+    ],
+    "correctIndex": 0,
+    "explanation": "SingleOrDefault() asserts that at most one row matches and throws otherwise, so it expresses an invariant. FirstOrDefault() is happy with many matches and needs an order to be deterministic.",
+    "difficulty": "medium",
+    "tags": ["querying", "linq"]
+  },
+  {
+    "id": "ef-011",
+    "question": "How does Find() differ from FirstOrDefault()?",
+    "options": [
+      "Find() checks the change tracker first and only queries if the key is not already loaded",
+      "Find() always queries the database, bypassing the tracker",
+      "Find() can filter on any property, not only the key",
+      "Find() returns every matching row"
+    ],
+    "correctIndex": 0,
+    "explanation": "Find() takes primary key values and can answer from memory, which makes it cheaper than a query when the entity is already tracked.",
+    "difficulty": "easy",
+    "tags": ["querying", "change-tracking"]
+  },
+  {
+    "id": "ef-012",
+    "question": "What does the Fluent API offer over data annotations?",
+    "options": [
+      "It is validated at compile time, unlike annotations",
+      "It keeps mapping out of the entity classes and can express configurations annotations cannot",
+      "It is the only way to declare a primary key",
+      "It works without a DbContext"
+    ],
+    "correctIndex": 1,
+    "explanation": "Configuring in OnModelCreating leaves the entities as plain classes and covers cases annotations do not reach, such as composite keys and relationship details.",
+    "difficulty": "medium",
+    "tags": ["configuration", "modelling"]
+  },
+  {
+    "id": "ef-013",
+    "question": "How does EF Core infer a foreign key by convention?",
+    "options": [
+      "From the first integer property declared on the entity",
+      "From a property named after the navigation plus its key, such as CustomerId",
+      "From the alphabetical order of the properties",
+      "It never infers one; every relationship must be configured explicitly"
+    ],
+    "correctIndex": 1,
+    "explanation": "EF matches a scalar property against the navigation name or the principal's type name combined with its key property. Anything outside that pattern needs HasForeignKey.",
+    "difficulty": "medium",
+    "tags": ["relationships", "conventions"]
+  },
+  {
+    "id": "ef-014",
+    "question": "How does an optimistic concurrency token behave?",
+    "options": [
+      "It locks the row until the transaction completes",
+      "It is added to the UPDATE's WHERE clause, and a zero-row result raises DbUpdateConcurrencyException",
+      "It retries the update automatically until it succeeds",
+      "It stops two users reading the same row at once"
+    ],
+    "correctIndex": 1,
+    "explanation": "Marking a rowversion property as a concurrency token means EF notices someone else changed the row since you read it, rather than silently overwriting their work.",
+    "difficulty": "hard",
+    "tags": ["concurrency"]
+  },
+  {
+    "id": "ef-015",
+    "question": "What does the __EFMigrationsHistory table record?",
+    "options": [
+      "Every change made to every entity",
+      "The SQL generated by the most recent migration",
+      "Which migrations have already been applied to that database",
+      "A schema backup taken before each migration"
+    ],
+    "correctIndex": 2,
+    "explanation": "EF compares the migrations in your assembly against the rows in this table to work out what still needs applying, which is what makes `database update` idempotent.",
+    "difficulty": "medium",
+    "tags": ["migrations"]
+  },
+  {
+    "id": "ef-016",
+    "question": "What do ExecuteUpdate and ExecuteDelete let you do?",
+    "options": [
+      "Update or delete every matching row in one statement, without loading the entities",
+      "Run arbitrary raw SQL and map the result to entities",
+      "Queue changes for the next SaveChanges call",
+      "Modify rows in a transaction that cannot be rolled back"
+    ],
+    "correctIndex": 0,
+    "explanation": "These translate straight to a single SQL statement, so they are far cheaper for bulk work. In exchange they bypass the change tracker and do not update entities already in memory.",
+    "difficulty": "medium",
+    "tags": ["querying", "performance"]
+  },
+  {
+    "id": "ef-017",
+    "question": "What does calling Update(entity) do?",
+    "options": [
+      "Marks only the properties that actually changed as modified",
+      "Marks every property on the entity as modified",
+      "Writes the entity to the database immediately",
+      "Reloads the entity from the database first"
+    ],
+    "correctIndex": 1,
+    "explanation": "Because the whole entity is marked Modified, SaveChanges writes every column. An entity the context is already tracking usually needs no Update call at all.",
+    "difficulty": "medium",
+    "tags": ["change-tracking"]
+  },
+  {
+    "id": "ef-018",
+    "question": "What is explicit loading?",
+    "options": [
+      "Loading related data on demand via Entry(...).Collection(...).Load()",
+      "Loading everything up front with Include at query time",
+      "Loading through a proxy that fetches on first property access",
+      "Loading a whole table into memory before filtering it"
+    ],
+    "correctIndex": 0,
+    "explanation": "Explicit loading fetches a navigation later, when you decide you need it, without relying on lazy-loading proxies being configured.",
+    "difficulty": "hard",
+    "tags": ["loading"]
+  },
+  {
+    "id": "ef-019",
+    "question": "How do you configure a composite primary key in EF Core?",
+    "options": [
+      "Apply [Key] to each participating property",
+      "Call HasKey with both properties inside OnModelCreating",
+      "Name both properties Id",
+      "Composite keys are not supported"
+    ],
+    "correctIndex": 1,
+    "explanation": "Two [Key] attributes are ambiguous about column order, so EF Core requires the Fluent API for composite keys.",
+    "difficulty": "medium",
+    "tags": ["keys", "configuration"]
+  },
+  {
+    "id": "ef-020",
+    "question": "Why should a DbContext instance not be shared across threads?",
+    "options": [
+      "It is not thread safe, and concurrent use corrupts its change tracker",
+      "It opens one connection per thread and exhausts the pool",
+      "It would bypass the migrations history table",
+      "It is thread safe, so sharing is perfectly fine"
+    ],
+    "correctIndex": 0,
+    "explanation": "A context holds mutable state for the entities it tracks. This is why the default registration is scoped, giving each request its own instance.",
+    "difficulty": "easy",
+    "tags": ["dbcontext", "concurrency"]
+  },
+  {
+    "id": "ef-021",
+    "question": "Why project into a DTO with Select instead of loading whole entities?",
+    "options": [
+      "It fetches only the columns you need and skips change tracking",
+      "It is the only way to apply a WHERE clause",
+      "It forces the query to be evaluated on the client",
+      "It guarantees the result is cached"
+    ],
+    "correctIndex": 0,
+    "explanation": "A projection narrows the SELECT list and returns objects the tracker ignores, which cuts both the data transferred and the work done per row.",
+    "difficulty": "medium",
+    "tags": ["querying", "performance"]
+  },
+  {
+    "id": "ef-022",
+    "question": "How does table-per-hierarchy differ from table-per-type?",
+    "options": [
+      "TPH uses one table per class, while TPT shares a single table",
+      "TPH stores the whole hierarchy in one table with a discriminator column; TPT uses a table per class",
+      "TPH is only available in EF6",
+      "They generate identical SQL"
+    ],
+    "correctIndex": 1,
+    "explanation": "TPH avoids joins but leaves nullable columns for properties belonging to only some subtypes. TPT normalises the schema at the cost of a join for every query.",
+    "difficulty": "hard",
+    "tags": ["inheritance", "modelling"]
+  },
+  {
+    "id": "ef-023",
+    "question": "What does HasData do?",
+    "options": [
+      "Inserts rows as soon as the context is constructed",
+      "Declares seed data that migrations then apply to the database",
+      "Loads test data into memory only",
+      "Marks existing rows as having been seeded"
+    ],
+    "correctIndex": 1,
+    "explanation": "Seed data declared with HasData becomes part of the model, so migrations generate the inserts and later changes to it produce further migrations.",
+    "difficulty": "medium",
+    "tags": ["seeding", "migrations"]
+  },
+  {
+    "id": "ef-024",
+    "question": "What is FromSqlRaw for?",
+    "options": [
+      "Running a raw SQL query whose results map onto an entity type",
+      "Executing DDL such as CREATE TABLE",
+      "Querying tracked entities without touching the database",
+      "Generating a migration from handwritten SQL"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pass values as arguments rather than building the string yourself, so they travel as SQL parameters. Interpolating user input directly is how injection gets in.",
+    "difficulty": "medium",
+    "tags": ["raw-sql", "security"]
+  },
+  {
+    "id": "ef-025",
+    "question": "What problem does AsSplitQuery solve?",
+    "options": [
+      "It spreads one query across several databases",
+      "It runs half the query on the client",
+      "It divides a large result set into pages",
+      "It avoids the row duplication caused by including several collections in one query"
+    ],
+    "correctIndex": 3,
+    "explanation": "Joining two collection navigations multiplies the rows together. A split query issues one statement per collection instead, trading round trips for far less duplicated data.",
+    "difficulty": "medium",
+    "tags": ["loading", "performance"]
+  }
+]

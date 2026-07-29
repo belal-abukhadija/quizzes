@@ -1,0 +1,332 @@
+[
+  {
+    "id": "of-001",
+    "question": "Which file extension holds the compiled, runnable version of an Oracle form?",
+    "options": [".fmx", ".fmb", ".fmt", ".pll"],
+    "correctIndex": 0,
+    "explanation": "The .fmb file is the editable source and compiling it produces the .fmx executable that the Forms runtime loads. Libraries follow the same pattern with .pll and .plx.",
+    "difficulty": "easy",
+    "tags": ["modules"]
+  },
+  {
+    "id": "of-002",
+    "question": "Which trigger fires when the user clicks a push button?",
+    "options": [
+      "WHEN-BUTTON-PRESSED",
+      "WHEN-NEW-ITEM-INSTANCE",
+      "KEY-NEXT-ITEM",
+      "POST-CHANGE"
+    ],
+    "correctIndex": 0,
+    "explanation": "WHEN-BUTTON-PRESSED is attached to the button item and runs on each click. WHEN-NEW-ITEM-INSTANCE fires when the cursor merely enters an item.",
+    "difficulty": "easy",
+    "tags": ["triggers"]
+  },
+  {
+    "id": "of-003",
+    "question": "When does a POST-QUERY trigger fire?",
+    "options": [
+      "After each record is fetched into the block, before it is displayed",
+      "Once, immediately before the query is sent to the database",
+      "Only after the last record of the query has been fetched",
+      "Whenever the user commits a change to a queried record"
+    ],
+    "correctIndex": 0,
+    "explanation": "POST-QUERY runs per fetched record, which is why it is the usual place to populate non-database items such as a looked-up description.",
+    "difficulty": "medium",
+    "tags": ["triggers", "blocks"]
+  },
+  {
+    "id": "of-004",
+    "question": "Which built-in moves the input focus to a different block?",
+    "options": ["GO_BLOCK", "GO_ITEM", "NEXT_SET", "SET_BLOCK_PROPERTY"],
+    "correctIndex": 0,
+    "explanation": "GO_BLOCK navigates to the named block and puts the cursor in its first enterable item. GO_ITEM navigates within a block to a specific item.",
+    "difficulty": "medium",
+    "tags": ["built-ins", "navigation"]
+  },
+  {
+    "id": "of-005",
+    "question": "What does :SYSTEM.MODE return while the form is waiting for query criteria?",
+    "options": ["ENTER-QUERY", "QUERY", "NORMAL", "CRITERIA"],
+    "correctIndex": 0,
+    "explanation": ":SYSTEM.MODE returns NORMAL, ENTER-QUERY, or QUERY. ENTER-QUERY means the user is typing criteria; QUERY means a query is currently executing.",
+    "difficulty": "medium",
+    "tags": ["system-variables"]
+  },
+  {
+    "id": "of-006",
+    "question": "What is a record group most commonly used for?",
+    "options": [
+      "Supplying the rows displayed by a list of values",
+      "Grouping items so they can be disabled together",
+      "Defining the physical layout of a block",
+      "Storing the form's commit-time validation rules"
+    ],
+    "correctIndex": 0,
+    "explanation": "A record group is an in-memory result set, and an LOV is attached to one to get its rows. Record groups can be static or built from a query.",
+    "difficulty": "easy",
+    "tags": ["lov", "record-groups"]
+  },
+  {
+    "id": "of-007",
+    "question": "What does the COMMIT_FORM built-in do?",
+    "options": [
+      "Validates the form, writes pending changes to the database, and commits the transaction",
+      "Writes pending changes but leaves the transaction open",
+      "Discards pending changes and requeries the block",
+      "Commits only the current record, ignoring other blocks"
+    ],
+    "correctIndex": 0,
+    "explanation": "COMMIT_FORM performs validation, posts the changes, and then issues the database commit, ending the transaction.",
+    "difficulty": "medium",
+    "tags": ["built-ins", "transactions"]
+  },
+  {
+    "id": "of-008",
+    "question": "How does POST differ from COMMIT_FORM?",
+    "options": [
+      "POST writes changes to the database but keeps the transaction open, so they can still be rolled back",
+      "POST commits immediately, while COMMIT_FORM only validates",
+      "POST affects only the current block, while COMMIT_FORM affects the current record",
+      "There is no difference; POST is an alias for COMMIT_FORM"
+    ],
+    "correctIndex": 0,
+    "explanation": "POST makes changes visible to later SQL in the same transaction without committing, which is useful when a called form must see the parent's uncommitted rows.",
+    "difficulty": "hard",
+    "tags": ["built-ins", "transactions"]
+  },
+  {
+    "id": "of-009",
+    "question": "Which trigger is the right place to validate the value a user typed into a single item?",
+    "options": [
+      "WHEN-VALIDATE-ITEM",
+      "WHEN-NEW-RECORD-INSTANCE",
+      "PRE-FORM",
+      "ON-ERROR"
+    ],
+    "correctIndex": 0,
+    "explanation": "WHEN-VALIDATE-ITEM fires when the item's value has changed and validation is due, and raising FORM_TRIGGER_FAILURE there keeps the cursor on the bad item.",
+    "difficulty": "medium",
+    "tags": ["triggers", "validation"]
+  },
+  {
+    "id": "of-010",
+    "question": "What is the relationship between a window and a canvas?",
+    "options": [
+      "A canvas is the surface that items are painted on, and it is displayed inside a window",
+      "A window is painted onto a canvas, which acts as the outer frame",
+      "They are two names for the same object in the layout editor",
+      "A canvas can only hold non-database items; a window holds the rest"
+    ],
+    "correctIndex": 0,
+    "explanation": "Items live on canvases, and each canvas is assigned to a window that provides the frame, title bar, and scrollbars. One window can show several canvases.",
+    "difficulty": "hard",
+    "tags": ["layout", "canvas"]
+  },
+  {
+    "id": "of-011",
+    "question": "When does the PRE-FORM trigger fire?",
+    "options": [
+      "Once, after the form is loaded but before it is displayed",
+      "Every time a new record is created",
+      "Once, immediately after the user exits the form",
+      "Before each query is executed"
+    ],
+    "correctIndex": 0,
+    "explanation": "PRE-FORM is the usual home for one-off initialisation such as setting globals or hiding items, because nothing has been drawn yet.",
+    "difficulty": "easy",
+    "tags": ["triggers"]
+  },
+  {
+    "id": "of-012",
+    "question": "What does the EXECUTE_QUERY built-in do?",
+    "options": [
+      "Opens the query criteria screen without fetching anything",
+      "Flushes the current block and runs its query, fetching records from the database",
+      "Runs the last SQL statement the user typed",
+      "Validates the block without touching the database"
+    ],
+    "correctIndex": 1,
+    "explanation": "EXECUTE_QUERY clears the block's existing records and populates it from the database, which is why unsaved changes prompt the user first.",
+    "difficulty": "medium",
+    "tags": ["built-ins", "blocks"]
+  },
+  {
+    "id": "of-013",
+    "question": "What does a master-detail relation between two blocks provide?",
+    "options": [
+      "A shared canvas for both blocks",
+      "A guarantee that each block commits in its own transaction",
+      "Automatic coordination, so the detail block requeries when the master record changes",
+      "Identical item properties across both blocks"
+    ],
+    "correctIndex": 2,
+    "explanation": "Forms generates the relation triggers and procedures that keep the detail block in step with the current master record, including the deletion rule you choose.",
+    "difficulty": "medium",
+    "tags": ["blocks", "relations"]
+  },
+  {
+    "id": "of-014",
+    "question": "How does a display item differ from a text item?",
+    "options": [
+      "A display item cannot be navigated to or edited by the user",
+      "A display item can only hold numeric values",
+      "A display item must be based on a database column",
+      "A display item is invisible at runtime"
+    ],
+    "correctIndex": 0,
+    "explanation": "Display items are read-only and take no part in navigation, which makes them the right choice for looked-up descriptions and computed totals.",
+    "difficulty": "easy",
+    "tags": ["items"]
+  },
+  {
+    "id": "of-015",
+    "question": "How does MESSAGE differ from showing an alert?",
+    "options": [
+      "MESSAGE shows a modal dialog; an alert writes to the status line",
+      "MESSAGE writes to the status line and carries on; an alert is modal and waits for a response",
+      "Both are modal, but MESSAGE cannot include variable text",
+      "MESSAGE only works while the form is in ENTER-QUERY mode"
+    ],
+    "correctIndex": 1,
+    "explanation": "Use MESSAGE for information the user does not have to acknowledge, and an alert when you need a decision or want to be certain the message was seen.",
+    "difficulty": "medium",
+    "tags": ["built-ins", "messages"]
+  },
+  {
+    "id": "of-016",
+    "question": "What changes when you write an ON-INSERT trigger?",
+    "options": [
+      "It runs after Forms has already inserted the row",
+      "It adds validation without altering how the insert happens",
+      "It replaces the default insert processing for that block entirely",
+      "It fires only when the insert fails"
+    ],
+    "correctIndex": 2,
+    "explanation": "ON- triggers override default DML, so your code becomes responsible for performing the insert, typically via a stored procedure or INSERT_RECORD.",
+    "difficulty": "hard",
+    "tags": ["triggers", "dml"]
+  },
+  {
+    "id": "of-017",
+    "question": "Which values can :SYSTEM.FORM_STATUS return?",
+    "options": [
+      "VALID or INVALID",
+      "NORMAL, ENTER-QUERY, or QUERY",
+      "TRUE or FALSE",
+      "CHANGED, QUERY, or NEW"
+    ],
+    "correctIndex": 3,
+    "explanation": "CHANGED means there are unsaved changes, QUERY means every record matches what was queried, and NEW means no record has been created or fetched yet.",
+    "difficulty": "medium",
+    "tags": ["system-variables"]
+  },
+  {
+    "id": "of-018",
+    "question": "What does NEXT_RECORD do when the cursor is already on the last fetched record?",
+    "options": [
+      "Raises an error",
+      "Creates a new empty record, if the block allows insertion",
+      "Wraps around to the first record",
+      "Requeries the block"
+    ],
+    "correctIndex": 1,
+    "explanation": "Moving past the last record creates a new one in an insertable block, which is how users add rows by simply navigating downwards.",
+    "difficulty": "medium",
+    "tags": ["navigation", "built-ins"]
+  },
+  {
+    "id": "of-019",
+    "question": "Which file extension holds a PL/SQL library's editable source?",
+    "options": [".pll", ".plx", ".fmb", ".mmb"],
+    "correctIndex": 0,
+    "explanation": "A .pll compiles to a .plx, mirroring the .fmb to .fmx pair for forms and .mmb to .mmx for menus.",
+    "difficulty": "easy",
+    "tags": ["modules", "libraries"]
+  },
+  {
+    "id": "of-020",
+    "question": "When does WHEN-VALIDATE-RECORD fire?",
+    "options": [
+      "Before any item in the record has been entered",
+      "Only at commit time",
+      "After the record's items are validated, when record-level validation is due",
+      "Each time the user types a character"
+    ],
+    "correctIndex": 2,
+    "explanation": "Because it runs once the whole record is populated, it is the right place for rules spanning several items, such as checking an end date falls after a start date.",
+    "difficulty": "medium",
+    "tags": ["triggers", "validation"]
+  },
+  {
+    "id": "of-021",
+    "question": "How does CALL_FORM differ from OPEN_FORM?",
+    "options": [
+      "CALL_FORM closes the calling form before opening the new one",
+      "CALL_FORM keeps the calling form in memory and suspends it until the called form exits",
+      "OPEN_FORM can only open forms held in the same directory",
+      "They behave identically; CALL_FORM is simply the older name"
+    ],
+    "correctIndex": 1,
+    "explanation": "CALL_FORM is modal with respect to its caller, while OPEN_FORM runs the new form independently in the same session. NEW_FORM replaces the caller altogether.",
+    "difficulty": "hard",
+    "tags": ["built-ins", "navigation"]
+  },
+  {
+    "id": "of-022",
+    "question": "What does an LOV's \"Automatic Select\" property do?",
+    "options": [
+      "Picks the first row of the LOV without displaying it",
+      "Refreshes the underlying record group each time the LOV opens",
+      "Validates the typed value against the database on every keystroke",
+      "Returns the value and dismisses the LOV automatically when only one row matches"
+    ],
+    "correctIndex": 3,
+    "explanation": "It saves the user a keystroke in the common case where their partial entry narrows the list to exactly one row.",
+    "difficulty": "medium",
+    "tags": ["lov"]
+  },
+  {
+    "id": "of-023",
+    "question": "What makes a block a control block?",
+    "options": [
+      "It is not based on a database table or view",
+      "It contains only push buttons",
+      "It is always shown in its own window",
+      "It can never hold more than one record"
+    ],
+    "correctIndex": 0,
+    "explanation": "With no base table, a control block never queries or commits. It suits toolbars, search criteria, and calculated summary items.",
+    "difficulty": "medium",
+    "tags": ["blocks"]
+  },
+  {
+    "id": "of-024",
+    "question": "What is a KEY- trigger for?",
+    "options": [
+      "Recording which key the user pressed, for auditing",
+      "Redefining what a particular function key does in the form",
+      "Enforcing the block's primary key",
+      "Encrypting keystrokes before they reach the database"
+    ],
+    "correctIndex": 1,
+    "explanation": "A KEY- trigger such as KEY-NEXT-ITEM replaces that key's built-in behaviour, so if you still want the original action you must call the matching built-in yourself.",
+    "difficulty": "hard",
+    "tags": ["triggers", "keys"]
+  },
+  {
+    "id": "of-025",
+    "question": "What is SET_ITEM_PROPERTY used for?",
+    "options": [
+      "Permanently changing the item's definition in the .fmb",
+      "Copying properties from one item to another at design time",
+      "Setting the item's value",
+      "Changing an item's properties at runtime, such as enabling or hiding it"
+    ],
+    "correctIndex": 3,
+    "explanation": "It affects the current session only. To change a value rather than a property, assign to :block.item or use COPY.",
+    "difficulty": "medium",
+    "tags": ["built-ins", "properties"]
+  }
+]

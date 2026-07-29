@@ -1,0 +1,5 @@
+/** Short unique id. `crypto.randomUUID` is not available on every mobile browser. */
+export function createId(prefix: string): string {
+  const random = Math.random().toString(36).slice(2, 8);
+  return `${prefix}_${Date.now().toString(36)}${random}`;
+}

@@ -1,0 +1,287 @@
+[
+  {
+    "id": "en-001",
+    "question": "She has been working at this company ____ 2019.",
+    "options": ["since", "for", "from", "during"],
+    "correctIndex": 0,
+    "explanation": "\"Since\" is used with a point in time, while \"for\" is used with a length of time: since 2019, but for six years.",
+    "difficulty": "easy",
+    "tags": ["prepositions"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-002",
+    "question": "By the time we reached the cinema, the film ____.",
+    "options": ["had already started", "has already started", "already started", "was already starting"],
+    "correctIndex": 0,
+    "explanation": "The past perfect shows that one past action finished before another past action. The film started first, then we arrived.",
+    "difficulty": "easy",
+    "tags": ["tenses", "past-perfect"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-003",
+    "question": "What does \"meticulous\" mean?",
+    "options": [
+      "Showing great attention to detail",
+      "Easily annoyed by small things",
+      "Reluctant to make a decision",
+      "Unnecessarily talkative"
+    ],
+    "correctIndex": 0,
+    "explanation": "\"Meticulous\" describes someone very careful and precise. A meticulous review misses nothing.",
+    "difficulty": "medium",
+    "tags": ["adjectives"],
+    "category": "vocabulary"
+  },
+  {
+    "id": "en-004",
+    "question": "Although he was exhausted, he ____ to finish the report before midnight.",
+    "options": ["managed", "could", "succeeded", "achieved"],
+    "correctIndex": 0,
+    "explanation": "\"Manage\" takes an infinitive and carries the sense of succeeding despite difficulty. \"Succeed\" would need \"in finishing\", and \"achieve\" takes a noun object.",
+    "difficulty": "medium",
+    "tags": ["verb-patterns"],
+    "category": "sentence-completion"
+  },
+  {
+    "id": "en-005",
+    "question": "I would like to congratulate you ____ your promotion.",
+    "options": ["on", "for", "about", "with"],
+    "correctIndex": 0,
+    "explanation": "The fixed collocation is \"congratulate someone on something\". \"For\" is used with \"thank\", not \"congratulate\".",
+    "difficulty": "easy",
+    "tags": ["prepositions", "collocations"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-006",
+    "question": "If I ____ you, I would accept the offer without hesitation.",
+    "options": ["were", "was", "am", "would be"],
+    "correctIndex": 0,
+    "explanation": "The second conditional uses the subjunctive \"were\" for all persons when giving hypothetical advice.",
+    "difficulty": "medium",
+    "tags": ["conditionals", "subjunctive"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-007",
+    "question": "What does \"ubiquitous\" mean?",
+    "options": [
+      "Present or found everywhere",
+      "Extremely rare and valuable",
+      "Difficult to understand",
+      "Happening at regular intervals"
+    ],
+    "correctIndex": 0,
+    "explanation": "\"Ubiquitous\" means seeming to be everywhere at once, as in \"smartphones are now ubiquitous\".",
+    "difficulty": "hard",
+    "tags": ["adjectives"],
+    "category": "vocabulary"
+  },
+  {
+    "id": "en-008",
+    "question": "I ____ to Cairo three times, and I hope to go again next year.",
+    "options": ["have been", "went", "had been", "am going"],
+    "correctIndex": 0,
+    "explanation": "The present perfect links past experience to the present, which fits a life experience that may be repeated. A past simple would close the time period off.",
+    "difficulty": "medium",
+    "tags": ["tenses", "present-perfect"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-009",
+    "question": "The evidence against the defendant was so ____ that the jury reached a verdict within an hour.",
+    "options": ["compelling", "compulsory", "compliant", "competent"],
+    "correctIndex": 0,
+    "explanation": "\"Compelling\" evidence is convincing enough to force a conclusion. The other options are unrelated words that merely look similar.",
+    "difficulty": "hard",
+    "tags": ["word-choice"],
+    "category": "sentence-completion"
+  },
+  {
+    "id": "en-010",
+    "question": "Neither the manager nor the employees ____ aware of the change.",
+    "options": ["were", "was", "is", "has been"],
+    "correctIndex": 0,
+    "explanation": "With \"neither ... nor\", the verb agrees with the nearer subject. \"Employees\" is plural, so \"were\" is correct.",
+    "difficulty": "medium",
+    "tags": ["agreement"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-011",
+    "question": "She is used to ____ up early for work.",
+    "options": ["getting", "get", "got", "be getting"],
+    "correctIndex": 0,
+    "explanation": "\"Be used to\" describes something familiar and takes a gerund. Compare \"used to get up\", which describes a past habit and takes the infinitive.",
+    "difficulty": "easy",
+    "tags": ["gerunds", "verb-patterns"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-012",
+    "question": "The report ____ by the finance team last week.",
+    "options": ["was reviewing", "was reviewed", "has reviewed", "is reviewed"],
+    "correctIndex": 1,
+    "explanation": "A completed past action done to the subject takes the past simple passive: \"was\" plus the past participle.",
+    "difficulty": "medium",
+    "tags": ["passive", "tenses"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-013",
+    "question": "He asked me where I ____.",
+    "options": ["live", "do live", "am living", "lived"],
+    "correctIndex": 3,
+    "explanation": "Reported questions shift the tense back and drop the auxiliary, keeping ordinary statement word order rather than question order.",
+    "difficulty": "medium",
+    "tags": ["reported-speech"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-014",
+    "question": "There isn't ____ milk left in the fridge.",
+    "options": ["many", "much", "a few", "several"],
+    "correctIndex": 1,
+    "explanation": "Milk is uncountable, so it takes \"much\". The other three all require a countable plural noun.",
+    "difficulty": "easy",
+    "tags": ["quantifiers"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-015",
+    "question": "I look forward to ____ from you soon.",
+    "options": ["hear", "hearing", "have heard", "be heard"],
+    "correctIndex": 1,
+    "explanation": "The \"to\" in \"look forward to\" is a preposition rather than part of an infinitive, so a gerund follows it.",
+    "difficulty": "medium",
+    "tags": ["prepositions", "gerunds"],
+    "category": "grammar"
+  },
+  {
+    "id": "en-016",
+    "question": "What does \"concise\" mean?",
+    "options": [
+      "Expressing a great deal in few words",
+      "Difficult to follow",
+      "Extremely detailed and long",
+      "Spoken with great confidence"
+    ],
+    "correctIndex": 0,
+    "explanation": "Concise writing is short without losing meaning. Being merely short is \"brief\"; being short and complete is \"concise\".",
+    "difficulty": "medium",
+    "tags": ["adjectives"],
+    "category": "vocabulary"
+  },
+  {
+    "id": "en-017",
+    "question": "What does \"reluctant\" mean?",
+    "options": [
+      "Eager and enthusiastic",
+      "Unwilling, and hesitating to act",
+      "Forgetful about arrangements",
+      "Easily persuaded by others"
+    ],
+    "correctIndex": 1,
+    "explanation": "A reluctant person does something without wanting to, as in \"a reluctant witness\". It is the opposite of willing.",
+    "difficulty": "easy",
+    "tags": ["adjectives"],
+    "category": "vocabulary"
+  },
+  {
+    "id": "en-018",
+    "question": "What does \"diligent\" mean?",
+    "options": [
+      "Naturally gifted without needing effort",
+      "Strict with other people",
+      "Careful and hardworking in what you do",
+      "Quick to take offence"
+    ],
+    "correctIndex": 2,
+    "explanation": "Diligence is steady, conscientious effort, as in \"a diligent student\". It describes how someone works, not how talented they are.",
+    "difficulty": "medium",
+    "tags": ["adjectives"],
+    "category": "vocabulary"
+  },
+  {
+    "id": "en-019",
+    "question": "What does \"ambiguous\" mean?",
+    "options": [
+      "Open to more than one interpretation",
+      "Deliberately dishonest",
+      "Impossible to translate",
+      "Expressed very forcefully"
+    ],
+    "correctIndex": 0,
+    "explanation": "Something ambiguous can be read in two or more ways. It says nothing about intent, so an ambiguous sentence is usually just unclear rather than deceitful.",
+    "difficulty": "hard",
+    "tags": ["adjectives"],
+    "category": "vocabulary"
+  },
+  {
+    "id": "en-020",
+    "question": "What does \"mitigate\" mean?",
+    "options": [
+      "To prove that something was justified",
+      "To move something to a new place",
+      "To repeat something for emphasis",
+      "To make something less severe or harmful"
+    ],
+    "correctIndex": 3,
+    "explanation": "You mitigate a risk or a loss by reducing its impact. Take care not to confuse it with \"migrate\", which means to move.",
+    "difficulty": "hard",
+    "tags": ["verbs"],
+    "category": "vocabulary"
+  },
+  {
+    "id": "en-021",
+    "question": "Despite the heavy rain, the match ____ as scheduled.",
+    "options": ["went ahead", "went off", "went over", "went out"],
+    "correctIndex": 0,
+    "explanation": "\"Go ahead\" means to happen as planned, which is exactly the contrast \"despite\" sets up.",
+    "difficulty": "medium",
+    "tags": ["phrasal-verbs"],
+    "category": "sentence-completion"
+  },
+  {
+    "id": "en-022",
+    "question": "The new regulations come ____ effect at the end of the month.",
+    "options": ["in", "into", "to", "on"],
+    "correctIndex": 1,
+    "explanation": "The fixed collocation is \"come into effect\". \"In effect\" does exist, but it follows \"be\" rather than \"come\".",
+    "difficulty": "medium",
+    "tags": ["prepositions", "collocations"],
+    "category": "sentence-completion"
+  },
+  {
+    "id": "en-023",
+    "question": "Her explanation was so ____ that nobody needed to ask a follow-up question.",
+    "options": ["verbose", "tentative", "lucid", "convoluted"],
+    "correctIndex": 2,
+    "explanation": "\"Lucid\" means clear and easy to follow, which is why no further questions were needed. \"Convoluted\" and \"verbose\" would produce the opposite outcome.",
+    "difficulty": "hard",
+    "tags": ["word-choice"],
+    "category": "sentence-completion"
+  },
+  {
+    "id": "en-024",
+    "question": "We had to ____ the meeting because two of the directors were ill.",
+    "options": ["delete", "prolong", "attend", "postpone"],
+    "correctIndex": 3,
+    "explanation": "\"Postpone\" means to move something to a later time. \"Prolong\" would mean making it last longer, which is not what illness forces.",
+    "difficulty": "medium",
+    "tags": ["word-choice"],
+    "category": "sentence-completion"
+  },
+  {
+    "id": "en-025",
+    "question": "The company is ____ for its excellent customer service.",
+    "options": ["renowned", "reminded", "reserved", "resigned"],
+    "correctIndex": 0,
+    "explanation": "\"Renowned for\" means widely known and admired for something. The other options look similar but do not collocate with \"for\" in this sense.",
+    "difficulty": "medium",
+    "tags": ["collocations"],
+    "category": "sentence-completion"
+  }
+]

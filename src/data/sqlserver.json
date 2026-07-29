@@ -1,0 +1,332 @@
+[
+  {
+    "id": "sql-001",
+    "question": "What does a clustered index determine about a table?",
+    "options": [
+      "The physical order in which the data rows are stored",
+      "Which columns are allowed to contain NULL values",
+      "The order in which triggers fire on the table",
+      "How many concurrent transactions the table allows"
+    ],
+    "correctIndex": 0,
+    "explanation": "A clustered index defines the physical sort order of the table's rows, because the leaf level of the index is the data itself. That is why a table can have only one.",
+    "difficulty": "easy",
+    "tags": ["indexes"]
+  },
+  {
+    "id": "sql-002",
+    "question": "Which join returns only the rows that have matching values in both tables?",
+    "options": ["INNER JOIN", "LEFT OUTER JOIN", "FULL OUTER JOIN", "CROSS JOIN"],
+    "correctIndex": 0,
+    "explanation": "INNER JOIN keeps only rows where the join predicate matches on both sides. The outer joins preserve unmatched rows from one or both tables.",
+    "difficulty": "easy",
+    "tags": ["joins"]
+  },
+  {
+    "id": "sql-003",
+    "question": "How many clustered indexes can a single table have?",
+    "options": ["Exactly one, at most", "Up to 249", "One per filegroup", "Unlimited"],
+    "correctIndex": 0,
+    "explanation": "Because a clustered index dictates the physical row order, a table can have only one. Additional indexes must be nonclustered.",
+    "difficulty": "medium",
+    "tags": ["indexes"]
+  },
+  {
+    "id": "sql-004",
+    "question": "Which statement about TRUNCATE TABLE versus DELETE is correct?",
+    "options": [
+      "TRUNCATE deallocates whole data pages and cannot take a WHERE clause",
+      "TRUNCATE logs each removed row individually, so it is slower",
+      "TRUNCATE can be filtered with a WHERE clause, DELETE cannot",
+      "TRUNCATE fires DELETE triggers for every affected row"
+    ],
+    "correctIndex": 0,
+    "explanation": "TRUNCATE removes all rows by deallocating pages, which is minimally logged and fires no row triggers. DELETE is row-by-row and can be filtered.",
+    "difficulty": "medium",
+    "tags": ["tsql", "transactions"]
+  },
+  {
+    "id": "sql-005",
+    "question": "What is the default transaction isolation level in SQL Server?",
+    "options": ["READ COMMITTED", "READ UNCOMMITTED", "SNAPSHOT", "SERIALIZABLE"],
+    "correctIndex": 0,
+    "explanation": "SQL Server defaults to READ COMMITTED, which prevents dirty reads but still allows non-repeatable reads and phantoms.",
+    "difficulty": "medium",
+    "tags": ["isolation", "transactions"]
+  },
+  {
+    "id": "sql-006",
+    "question": "Which isolation level prevents phantom reads?",
+    "options": ["SERIALIZABLE", "READ COMMITTED", "REPEATABLE READ", "READ UNCOMMITTED"],
+    "correctIndex": 0,
+    "explanation": "Only SERIALIZABLE takes range locks, which stops another transaction inserting a row that would newly satisfy your WHERE clause. REPEATABLE READ protects rows it already read, but not new ones.",
+    "difficulty": "hard",
+    "tags": ["isolation", "transactions"]
+  },
+  {
+    "id": "sql-007",
+    "question": "How does HAVING differ from WHERE?",
+    "options": [
+      "HAVING filters after rows are grouped and aggregated; WHERE filters before",
+      "HAVING can only be used on indexed columns",
+      "HAVING filters before grouping; WHERE filters afterwards",
+      "They are interchangeable in every query"
+    ],
+    "correctIndex": 0,
+    "explanation": "WHERE is applied to individual rows before GROUP BY, so it cannot see aggregates. HAVING is applied to the grouped result and can filter on things like COUNT(*).",
+    "difficulty": "easy",
+    "tags": ["aggregates", "tsql"]
+  },
+  {
+    "id": "sql-008",
+    "question": "What is the difference between RANK() and DENSE_RANK()?",
+    "options": [
+      "RANK() leaves gaps in the numbering after ties; DENSE_RANK() does not",
+      "DENSE_RANK() leaves gaps after ties; RANK() does not",
+      "RANK() works only with ORDER BY; DENSE_RANK() does not need it",
+      "They differ only in how they handle NULL values"
+    ],
+    "correctIndex": 0,
+    "explanation": "With two rows tied at rank 1, RANK() gives the next row 3 while DENSE_RANK() gives it 2. DENSE_RANK() produces consecutive ranks.",
+    "difficulty": "medium",
+    "tags": ["window-functions", "tsql"]
+  },
+  {
+    "id": "sql-009",
+    "question": "On a table that has a clustered index, what does a nonclustered index store as its row locator?",
+    "options": [
+      "The clustering key of the row",
+      "The physical file offset of the row",
+      "A copy of every column in the row",
+      "The row's transaction sequence number"
+    ],
+    "correctIndex": 0,
+    "explanation": "Nonclustered indexes on a clustered table point at rows by clustering key, so lookups go through the clustered index. On a heap they store a physical row identifier instead.",
+    "difficulty": "medium",
+    "tags": ["indexes"]
+  },
+  {
+    "id": "sql-010",
+    "question": "What makes an index a \"covering\" index for a given query?",
+    "options": [
+      "It contains every column the query needs, so no lookup to the table is required",
+      "It covers every row in the table with no filter predicate",
+      "It is rebuilt automatically whenever statistics change",
+      "It enforces uniqueness across all of the query's columns"
+    ],
+    "correctIndex": 0,
+    "explanation": "When the index's key and INCLUDE columns supply everything the query selects and filters on, SQL Server can satisfy the query from the index alone and skip the key lookup.",
+    "difficulty": "hard",
+    "tags": ["indexes", "performance"]
+  },
+  {
+    "id": "sql-011",
+    "question": "What does a LEFT OUTER JOIN return?",
+    "options": [
+      "Only the rows that match in both tables",
+      "Every row from the left table, with NULLs where the right table has no match",
+      "Every row from the right table, with NULLs where the left has no match",
+      "Every possible combination of rows from both tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "A left join preserves all rows from the left table and fills unmatched right-hand columns with NULL. Putting a condition on one of those columns in WHERE quietly turns it back into an inner join.",
+    "difficulty": "easy",
+    "tags": ["joins"]
+  },
+  {
+    "id": "sql-012",
+    "question": "What does COALESCE return?",
+    "options": [
+      "The first non-NULL value in its argument list",
+      "The last non-NULL value in its argument list",
+      "NULL if any argument is NULL",
+      "A count of the non-NULL arguments"
+    ],
+    "correctIndex": 0,
+    "explanation": "COALESCE evaluates its arguments in order and returns the first that is not NULL, which makes it the usual way to supply a fallback value.",
+    "difficulty": "easy",
+    "tags": ["tsql", "null-handling"]
+  },
+  {
+    "id": "sql-013",
+    "question": "What is a filtered index?",
+    "options": [
+      "An index that SQL Server drops automatically when it goes unused",
+      "An index built with a WHERE clause, covering only part of the table",
+      "An index that removes duplicate key values as they are inserted",
+      "An index stored on a dedicated filegroup"
+    ],
+    "correctIndex": 1,
+    "explanation": "A filtered index covers only rows matching its predicate, so it is smaller and cheaper to maintain. It suits sparse columns where most rows are NULL or one status value dominates.",
+    "difficulty": "medium",
+    "tags": ["indexes"]
+  },
+  {
+    "id": "sql-014",
+    "question": "How does UNION differ from UNION ALL?",
+    "options": [
+      "UNION ALL removes duplicate rows; UNION keeps them",
+      "UNION removes duplicate rows, at the cost of an extra sort; UNION ALL keeps everything",
+      "UNION combines only two queries, while UNION ALL allows any number",
+      "They are identical apart from the order of the output columns"
+    ],
+    "correctIndex": 1,
+    "explanation": "Deduplicating forces SQL Server to sort or hash the combined result. If you know the inputs are already distinct, UNION ALL avoids that work.",
+    "difficulty": "medium",
+    "tags": ["tsql", "performance"]
+  },
+  {
+    "id": "sql-015",
+    "question": "What does ROLLBACK do?",
+    "options": [
+      "Undoes only the most recent statement",
+      "Commits the current work and opens a new transaction",
+      "Undoes every change made since the transaction began",
+      "Releases all locks while keeping the changes"
+    ],
+    "correctIndex": 2,
+    "explanation": "ROLLBACK discards the whole transaction, returning the data to its state at BEGIN TRAN. Use a save point if you need to undo only part of the work.",
+    "difficulty": "medium",
+    "tags": ["transactions"]
+  },
+  {
+    "id": "sql-016",
+    "question": "How does a PRIMARY KEY differ from a UNIQUE constraint?",
+    "options": [
+      "A unique constraint cannot be referenced by a foreign key",
+      "A primary key rejects NULLs, and a table can have only one",
+      "A primary key permits a single NULL row; a unique constraint permits none",
+      "A primary key does not create an index"
+    ],
+    "correctIndex": 1,
+    "explanation": "A table has at most one primary key and it disallows NULL entirely. A table can carry several unique constraints, and in SQL Server each permits one NULL row.",
+    "difficulty": "medium",
+    "tags": ["constraints", "keys"]
+  },
+  {
+    "id": "sql-017",
+    "question": "What is a deadlock?",
+    "options": [
+      "A query that exceeds its configured timeout",
+      "A table held exclusively by a long-running backup",
+      "A transaction waiting for memory to become available",
+      "Two transactions each holding a lock the other needs, so neither can continue"
+    ],
+    "correctIndex": 3,
+    "explanation": "SQL Server detects the cycle and terminates one session as the deadlock victim with error 1205. Touching objects in a consistent order across your code is the usual prevention.",
+    "difficulty": "hard",
+    "tags": ["locking", "transactions"]
+  },
+  {
+    "id": "sql-018",
+    "question": "What is a common table expression used for?",
+    "options": [
+      "Naming a temporary result set that the statement immediately following can reference",
+      "Storing a query result permanently on disk",
+      "Caching a query plan so other sessions can reuse it",
+      "Granting permissions on a subquery"
+    ],
+    "correctIndex": 0,
+    "explanation": "A WITH clause names a result set to keep complex queries readable, and a CTE that references itself enables recursion. It exists only for the duration of that one statement.",
+    "difficulty": "medium",
+    "tags": ["tsql", "cte"]
+  },
+  {
+    "id": "sql-019",
+    "question": "How does COALESCE differ from ISNULL?",
+    "options": [
+      "ISNULL takes any number of arguments; COALESCE takes exactly two",
+      "ISNULL is the only one that works on character data",
+      "COALESCE is ANSI standard and takes any number of arguments; ISNULL takes exactly two",
+      "COALESCE cannot appear in a WHERE clause"
+    ],
+    "correctIndex": 2,
+    "explanation": "COALESCE is portable and variadic. ISNULL is T-SQL specific, takes two arguments, and determines the result's data type differently, which occasionally truncates.",
+    "difficulty": "medium",
+    "tags": ["tsql", "null-handling"]
+  },
+  {
+    "id": "sql-020",
+    "question": "What does the query optimizer use statistics for?",
+    "options": [
+      "Recording how often each stored procedure has run",
+      "Estimating how many rows a predicate will return, in order to choose a plan",
+      "Tracking which indexes were rebuilt most recently",
+      "Measuring the actual duration of the previous execution"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cardinality estimates drive join order, index choice, and memory grants. Stale statistics are a classic reason a plan that used to be fast suddenly is not.",
+    "difficulty": "hard",
+    "tags": ["performance", "optimizer"]
+  },
+  {
+    "id": "sql-021",
+    "question": "How does COUNT(column) differ from COUNT(*)?",
+    "options": [
+      "COUNT(column) ignores rows where that column is NULL",
+      "COUNT(column) is always faster because it reads fewer pages",
+      "COUNT(*) ignores rows that are NULL in any column",
+      "They are identical in every case"
+    ],
+    "correctIndex": 0,
+    "explanation": "COUNT(*) counts rows, while COUNT(column) counts non-NULL values in that column. The two differ precisely when the column is nullable.",
+    "difficulty": "easy",
+    "tags": ["aggregates", "null-handling"]
+  },
+  {
+    "id": "sql-022",
+    "question": "What does an ordinary, non-indexed view store?",
+    "options": [
+      "A materialised copy of its result set, refreshed on demand",
+      "A snapshot taken at the moment the view was created",
+      "Only the query definition; the data is read from the base tables each time",
+      "Nothing at all, not even the definition"
+    ],
+    "correctIndex": 2,
+    "explanation": "A standard view is a stored SELECT that gets expanded into the calling query, so it always reflects current data. Only an indexed view actually persists rows.",
+    "difficulty": "medium",
+    "tags": ["views"]
+  },
+  {
+    "id": "sql-023",
+    "question": "How does SNAPSHOT isolation keep readers from blocking?",
+    "options": [
+      "By holding shared locks for a shorter time",
+      "By escalating row locks into a single table lock",
+      "By running the query against a read-only replica",
+      "By reading a previous row version from tempdb instead of waiting for a lock"
+    ],
+    "correctIndex": 3,
+    "explanation": "Row versioning lets a transaction see data as it was when the transaction started, so readers never block writers. The cost is extra tempdb space and version-chain maintenance.",
+    "difficulty": "hard",
+    "tags": ["isolation", "transactions"]
+  },
+  {
+    "id": "sql-024",
+    "question": "What does the MERGE statement do?",
+    "options": [
+      "Combines the result sets of two SELECT statements",
+      "Inserts, updates, or deletes rows in a target table according to whether they match a source",
+      "Merges two databases into a single one",
+      "Rebuilds fragmented indexes into one contiguous extent"
+    ],
+    "correctIndex": 1,
+    "explanation": "MERGE expresses an upsert in a single statement with WHEN MATCHED and WHEN NOT MATCHED branches, so the source is read once instead of once per operation.",
+    "difficulty": "medium",
+    "tags": ["tsql"]
+  },
+  {
+    "id": "sql-025",
+    "question": "Beyond code reuse, what does passing values as stored procedure parameters give you?",
+    "options": [
+      "A guarantee that the query never needs an index",
+      "Execution outside the current transaction",
+      "The values are never treated as SQL, so injection is prevented, and the plan is reused",
+      "Automatic caching of the result set for later calls"
+    ],
+    "correctIndex": 2,
+    "explanation": "Parameters are sent separately from the statement text, so user input cannot become executable SQL. The parameterised text also hashes to one cached plan instead of many.",
+    "difficulty": "medium",
+    "tags": ["stored-procedures", "security"]
+  }
+]

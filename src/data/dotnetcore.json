@@ -1,0 +1,337 @@
+[
+  {
+    "id": "dnc-001",
+    "question": "In the minimal hosting model of .NET 6 and later, which file registers services and builds the middleware pipeline?",
+    "options": ["Program.cs", "Startup.cs", "Global.asax", "Web.config"],
+    "correctIndex": 0,
+    "explanation": "The minimal hosting model merged Startup.cs into Program.cs, where the WebApplicationBuilder configures services and the WebApplication configures middleware.",
+    "difficulty": "easy",
+    "tags": ["hosting", "configuration"]
+  },
+  {
+    "id": "dnc-002",
+    "question": "What does the order of middleware registration determine?",
+    "options": [
+      "The order components run on the way in, and the reverse order on the way out",
+      "Nothing; ASP.NET Core sorts middleware by priority attributes",
+      "Only the order in which exceptions are logged",
+      "The order in which services are constructed by the container"
+    ],
+    "correctIndex": 0,
+    "explanation": "The pipeline is nested, so each component runs before calling the next and then regains control as the response travels back out. This is why UseAuthentication must come before UseAuthorization.",
+    "difficulty": "easy",
+    "tags": ["middleware", "pipeline"]
+  },
+  {
+    "id": "dnc-003",
+    "question": "Which dependency injection lifetime creates one instance per HTTP request?",
+    "options": ["Scoped", "Transient", "Singleton", "Pooled"],
+    "correctIndex": 0,
+    "explanation": "Scoped services live for the duration of a request scope, so every class resolved during that request shares the instance. Transient gives a new instance per resolution.",
+    "difficulty": "medium",
+    "tags": ["dependency-injection"]
+  },
+  {
+    "id": "dnc-004",
+    "question": "Why is injecting a scoped service into a singleton a problem?",
+    "options": [
+      "The singleton captures the first request's instance and keeps using it forever",
+      "The container silently converts the singleton into a scoped service",
+      "It doubles the memory used by the scoped service",
+      "It is not a problem; the container creates a fresh scope automatically"
+    ],
+    "correctIndex": 0,
+    "explanation": "This is the captive dependency problem: the scoped instance outlives its scope because the singleton holds a reference to it. The container throws on this during scope validation in development.",
+    "difficulty": "medium",
+    "tags": ["dependency-injection"]
+  },
+  {
+    "id": "dnc-005",
+    "question": "What is the role of appsettings.Development.json?",
+    "options": [
+      "It overrides values from appsettings.json when the environment is Development",
+      "It fully replaces appsettings.json in every environment",
+      "It stores secrets that are encrypted at rest",
+      "It is only read by the dotnet CLI, not by the running app"
+    ],
+    "correctIndex": 0,
+    "explanation": "Configuration sources are layered, and the environment-specific file is added after the base file, so matching keys win. Nothing else in the base file is lost.",
+    "difficulty": "easy",
+    "tags": ["configuration"]
+  },
+  {
+    "id": "dnc-006",
+    "question": "What does the options pattern give you over reading IConfiguration directly?",
+    "options": [
+      "Strongly typed, injectable settings classes bound to a configuration section",
+      "Automatic encryption of configuration values",
+      "The ability to change appsettings.json at runtime from code",
+      "Compile-time validation that every key exists"
+    ],
+    "correctIndex": 0,
+    "explanation": "Binding a section to a POCO and injecting IOptions<T> keeps configuration typed and testable, instead of scattering string keys through the code.",
+    "difficulty": "medium",
+    "tags": ["configuration", "dependency-injection"]
+  },
+  {
+    "id": "dnc-007",
+    "question": "What is Kestrel?",
+    "options": [
+      "The cross-platform web server built into ASP.NET Core",
+      "The dependency injection container used by ASP.NET Core",
+      "The templating engine behind Razor views",
+      "The default object-relational mapper for .NET"
+    ],
+    "correctIndex": 0,
+    "explanation": "Kestrel is the in-process HTTP server that ASP.NET Core apps run on by default, often behind a reverse proxy such as IIS or Nginx.",
+    "difficulty": "easy",
+    "tags": ["hosting"]
+  },
+  {
+    "id": "dnc-008",
+    "question": "How does BackgroundService relate to IHostedService?",
+    "options": [
+      "BackgroundService is an abstract base class implementing IHostedService with a single ExecuteAsync override",
+      "They are unrelated; BackgroundService is for desktop apps only",
+      "IHostedService derives from BackgroundService",
+      "BackgroundService replaces IHostedService, which is obsolete"
+    ],
+    "correctIndex": 0,
+    "explanation": "BackgroundService handles the StartAsync and StopAsync plumbing and gives you one long-running ExecuteAsync with a cancellation token, which is why it is the usual base for worker tasks.",
+    "difficulty": "hard",
+    "tags": ["hosting", "background-tasks"]
+  },
+  {
+    "id": "dnc-009",
+    "question": "What does the [ApiController] attribute enable on a controller?",
+    "options": [
+      "Attribute routing is required, and model state errors return 400 automatically",
+      "It registers the controller in the DI container as a singleton",
+      "It turns every action into a background job",
+      "It disables authorization filters for the controller"
+    ],
+    "correctIndex": 0,
+    "explanation": "[ApiController] opts into API-specific conventions: automatic model validation responses, inference of binding sources, and problem-details error payloads.",
+    "difficulty": "medium",
+    "tags": ["web-api", "controllers"]
+  },
+  {
+    "id": "dnc-010",
+    "question": "What happens if a middleware component never calls the next delegate?",
+    "options": [
+      "The pipeline short-circuits and no later middleware runs",
+      "The request is retried from the start of the pipeline",
+      "ASP.NET Core calls the next component automatically",
+      "The response is discarded and a 500 is returned"
+    ],
+    "correctIndex": 0,
+    "explanation": "Not calling next() short-circuits the pipeline, which is exactly how terminal middleware such as UseStaticFiles responds without involving the rest of the chain.",
+    "difficulty": "hard",
+    "tags": ["middleware", "pipeline"]
+  },
+  {
+    "id": "dnc-011",
+    "question": "What is builder.Services used for?",
+    "options": [
+      "Registering services with the dependency injection container",
+      "Configuring the middleware pipeline",
+      "Reading values out of appsettings.json",
+      "Declaring the routes the app responds to"
+    ],
+    "correctIndex": 0,
+    "explanation": "Everything the container must know how to construct is registered on builder.Services before the app is built. Middleware is configured afterwards, on the WebApplication.",
+    "difficulty": "easy",
+    "tags": ["dependency-injection", "hosting"]
+  },
+  {
+    "id": "dnc-012",
+    "question": "Why must UseRouting run before the endpoint middleware?",
+    "options": [
+      "Because routing has to come after authorization",
+      "Routing decides which endpoint matches, and the endpoint middleware then executes it",
+      "Because endpoints are resolved at compile time",
+      "There is no ordering requirement between the two"
+    ],
+    "correctIndex": 1,
+    "explanation": "Routing sets the matched endpoint on the request. Anything that depends on knowing the endpoint, including authorization policies, has to sit between routing and execution.",
+    "difficulty": "medium",
+    "tags": ["middleware", "routing"]
+  },
+  {
+    "id": "dnc-013",
+    "question": "How do you express the nested configuration key Logging:LogLevel:Default as an environment variable?",
+    "options": [
+      "Logging.LogLevel.Default",
+      "Logging-LogLevel-Default",
+      "Logging__LogLevel__Default, using double underscores",
+      "Logging:LogLevel:Default, which works on every platform"
+    ],
+    "correctIndex": 2,
+    "explanation": "The double underscore is the portable separator, because a colon is not legal in environment variable names on all platforms.",
+    "difficulty": "medium",
+    "tags": ["configuration"]
+  },
+  {
+    "id": "dnc-014",
+    "question": "What does IWebHostEnvironment tell you?",
+    "options": [
+      "Which CPU architecture the process is running on",
+      "The environment name plus the content root and web root paths",
+      "Every service currently registered in the container",
+      "The route values of the current request"
+    ],
+    "correctIndex": 1,
+    "explanation": "It is how code branches on IsDevelopment or IsProduction and how it locates files relative to the content root.",
+    "difficulty": "medium",
+    "tags": ["hosting", "configuration"]
+  },
+  {
+    "id": "dnc-015",
+    "question": "How does app.Run differ from app.Use?",
+    "options": [
+      "Run is terminal and never invokes the next component",
+      "Run always executes before every Use, whatever the order",
+      "Use is terminal, while Run always continues the pipeline",
+      "Run may only be used in the Development environment"
+    ],
+    "correctIndex": 0,
+    "explanation": "Run registers terminal middleware that produces a response and stops. Use receives the next delegate and decides whether to call it.",
+    "difficulty": "hard",
+    "tags": ["middleware", "pipeline"]
+  },
+  {
+    "id": "dnc-016",
+    "question": "Which action result produces HTTP 204?",
+    "options": ["Ok()", "NoContent()", "Accepted()", "Empty()"],
+    "correctIndex": 1,
+    "explanation": "204 No Content means the request succeeded and there is deliberately nothing in the body, which suits a DELETE or an update that returns no representation.",
+    "difficulty": "medium",
+    "tags": ["web-api", "status-codes"]
+  },
+  {
+    "id": "dnc-017",
+    "question": "What determines the category of an ILogger<T>?",
+    "options": [
+      "The minimum level configured in appsettings.json",
+      "The name of the containing assembly",
+      "The fully qualified name of the type T",
+      "The name of the method that writes the log entry"
+    ],
+    "correctIndex": 2,
+    "explanation": "The category is the type's full name, which is exactly what lets configuration set different minimum levels per namespace.",
+    "difficulty": "medium",
+    "tags": ["logging"]
+  },
+  {
+    "id": "dnc-018",
+    "question": "When is launchSettings.json used?",
+    "options": [
+      "Only on the local development machine; it is not published",
+      "In every environment, production included",
+      "Only when the app runs inside a container",
+      "Only by the integration test host"
+    ],
+    "correctIndex": 0,
+    "explanation": "It configures how the tooling launches the app locally, including profiles and environment variables. Deployed environments get their settings elsewhere.",
+    "difficulty": "easy",
+    "tags": ["hosting", "configuration"]
+  },
+  {
+    "id": "dnc-019",
+    "question": "Why register a service under its interface rather than its concrete type?",
+    "options": [
+      "The container resolves interfaces more quickly",
+      "Consumers depend on the abstraction, so the implementation can be swapped or faked in tests",
+      "It is mandatory; the container rejects concrete registrations",
+      "It reduces the size of the compiled assembly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Depending on an interface keeps the consumer unaware of which implementation it receives, which is what makes substitution in tests and configuration possible.",
+    "difficulty": "medium",
+    "tags": ["dependency-injection", "design"]
+  },
+  {
+    "id": "dnc-020",
+    "question": "Why is calling .Result on a Task while handling a request risky?",
+    "options": [
+      "It always throws an InvalidOperationException",
+      "It silently returns the type's default value",
+      "It blocks the thread, which can starve the thread pool or deadlock outright",
+      "It cancels the underlying task"
+    ],
+    "correctIndex": 2,
+    "explanation": "Blocking ties up a pool thread that could be serving other requests, and where a synchronization context is captured it can deadlock. Await the task instead.",
+    "difficulty": "hard",
+    "tags": ["async", "performance"]
+  },
+  {
+    "id": "dnc-021",
+    "question": "What problem does configuring CORS solve?",
+    "options": [
+      "Encrypting traffic between browser and server",
+      "Letting a browser page served from one origin call an API on a different origin",
+      "Preventing SQL injection through query strings",
+      "Compressing responses for slow connections"
+    ],
+    "correctIndex": 1,
+    "explanation": "Browsers block cross-origin reads by default. CORS headers are the server telling the browser which other origins it is willing to be called from.",
+    "difficulty": "medium",
+    "tags": ["cors", "security"]
+  },
+  {
+    "id": "dnc-022",
+    "question": "What does app.MapGet(\"/items\", handler) do?",
+    "options": [
+      "Registers the handler for GET requests to /items",
+      "Registers the handler for every HTTP verb on /items",
+      "Adds middleware that runs on all incoming requests",
+      "Serves a static file directory at /items"
+    ],
+    "correctIndex": 0,
+    "explanation": "MapGet defines a single endpoint bound to one verb and route. Other verbs need MapPost, MapPut, and so on.",
+    "difficulty": "medium",
+    "tags": ["minimal-api", "routing"]
+  },
+  {
+    "id": "dnc-023",
+    "question": "Why does the order in which configuration providers are added matter?",
+    "options": [
+      "Only the first provider is ever consulted",
+      "A provider added later overrides matching keys from those added before it",
+      "A provider added later is ignored if the key already exists",
+      "The order affects only startup time"
+    ],
+    "correctIndex": 1,
+    "explanation": "The default host layers appsettings.json, then the environment-specific file, then environment variables, then command-line arguments, each winning over the last.",
+    "difficulty": "hard",
+    "tags": ["configuration"]
+  },
+  {
+    "id": "dnc-024",
+    "question": "What does [FromBody] tell the model binder?",
+    "options": [
+      "Read the value from the request body rather than the route or query string",
+      "Read the value from a posted form field only",
+      "Validate the value before binding it",
+      "Bind the value from the request headers"
+    ],
+    "correctIndex": 0,
+    "explanation": "Complex types on API controllers are bound from the body by convention, so the attribute matters most when you need to be explicit or the type is simple.",
+    "difficulty": "medium",
+    "tags": ["model-binding", "web-api"]
+  },
+  {
+    "id": "dnc-025",
+    "question": "What is an action filter for?",
+    "options": [
+      "Replacing the controller action altogether",
+      "Choosing which routes get registered at startup",
+      "Running cross-cutting code immediately before and after an action executes",
+      "Removing invalid entries from a collection parameter"
+    ],
+    "correctIndex": 2,
+    "explanation": "Filters are the natural home for concerns that wrap many actions, such as logging, validation, or caching, without repeating the code in each one.",
+    "difficulty": "medium",
+    "tags": ["filters", "web-api"]
+  }
+]

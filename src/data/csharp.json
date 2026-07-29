@@ -1,0 +1,347 @@
+[
+  {
+    "id": "cs-001",
+    "question": "Which of these is a value type in C#?",
+    "options": ["struct", "class", "interface", "delegate"],
+    "correctIndex": 0,
+    "explanation": "Structs are value types, so assigning one copies the whole value. Classes, interfaces, and delegates are reference types.",
+    "difficulty": "easy",
+    "tags": ["types"]
+  },
+  {
+    "id": "cs-002",
+    "question": "What happens when you call ToUpper() on a string?",
+    "options": [
+      "A new string is returned; the original is unchanged",
+      "The original string is modified in place",
+      "The string is modified only if it is not interned",
+      "A compiler error, because strings are read-only"
+    ],
+    "correctIndex": 0,
+    "explanation": "Strings are immutable in .NET, so every operation that looks like a mutation actually allocates a new string. Use StringBuilder when doing this in a loop.",
+    "difficulty": "easy",
+    "tags": ["strings", "immutability"]
+  },
+  {
+    "id": "cs-003",
+    "question": "For a class that does not override anything, what does == compare?",
+    "options": [
+      "Whether the two operands refer to the same object",
+      "Whether every public property has an equal value",
+      "The result of calling GetHashCode() on both",
+      "Whether both operands are non-null"
+    ],
+    "correctIndex": 0,
+    "explanation": "The default for reference types is reference equality. Value equality requires overriding Equals and ==, or using a record, which does it for you.",
+    "difficulty": "medium",
+    "tags": ["equality", "types"]
+  },
+  {
+    "id": "cs-004",
+    "question": "What should an async method that produces no value return?",
+    "options": [
+      "Task",
+      "void",
+      "IAsyncEnumerable",
+      "Task<void>"
+    ],
+    "correctIndex": 0,
+    "explanation": "Returning Task lets the caller await the method and observe exceptions. async void should be limited to event handlers, because its exceptions cannot be caught by the caller.",
+    "difficulty": "medium",
+    "tags": ["async"]
+  },
+  {
+    "id": "cs-005",
+    "question": "When does a LINQ query built with Where() actually run?",
+    "options": [
+      "When the result is enumerated, for example by foreach or ToList()",
+      "Immediately, on the line where Where() is called",
+      "When the containing method returns",
+      "Only if the source implements IQueryable"
+    ],
+    "correctIndex": 0,
+    "explanation": "Most LINQ operators are lazy and just build up a query. Nothing executes until you enumerate it, which is why enumerating twice runs the query twice.",
+    "difficulty": "medium",
+    "tags": ["linq", "deferred-execution"]
+  },
+  {
+    "id": "cs-006",
+    "question": "How does readonly differ from const?",
+    "options": [
+      "const is fixed at compile time; readonly can be assigned at runtime in the constructor",
+      "readonly is fixed at compile time; const can be assigned in the constructor",
+      "const works on reference types only; readonly on value types only",
+      "They are identical apart from naming conventions"
+    ],
+    "correctIndex": 0,
+    "explanation": "A const is baked into the calling assembly at compile time and must be a literal. A readonly field can be computed per instance in the constructor.",
+    "difficulty": "hard",
+    "tags": ["modifiers"]
+  },
+  {
+    "id": "cs-007",
+    "question": "What does a using statement guarantee?",
+    "options": [
+      "Dispose() is called on the object when the block exits, even if an exception is thrown",
+      "The object is garbage collected as soon as the block exits",
+      "The object cannot be reassigned inside the block",
+      "All exceptions inside the block are swallowed"
+    ],
+    "correctIndex": 0,
+    "explanation": "using compiles to a try/finally that calls Dispose, which is how unmanaged resources such as file handles and connections get released deterministically.",
+    "difficulty": "medium",
+    "tags": ["idisposable", "resources"]
+  },
+  {
+    "id": "cs-008",
+    "question": "With nullable reference types enabled, what does string? mean?",
+    "options": [
+      "The variable is allowed to be null, and the compiler warns if you dereference it unchecked",
+      "The variable is wrapped in Nullable<string>",
+      "The variable is guaranteed never to be null",
+      "The variable is a value type that can be null"
+    ],
+    "correctIndex": 0,
+    "explanation": "For reference types the ? is an annotation used for static analysis, not a different runtime type. Nullable<T> applies only to value types.",
+    "difficulty": "easy",
+    "tags": ["nullability"]
+  },
+  {
+    "id": "cs-009",
+    "question": "What is boxing?",
+    "options": [
+      "Wrapping a value type in an object so it can be stored on the heap",
+      "Wrapping a reference type in a struct to avoid heap allocation",
+      "Grouping several fields into a tuple",
+      "Encrypting a value before serializing it"
+    ],
+    "correctIndex": 0,
+    "explanation": "Assigning an int to an object allocates a box on the heap and copies the value in. Unboxing casts it back, and both operations cost enough to avoid in hot loops.",
+    "difficulty": "hard",
+    "tags": ["types", "performance"]
+  },
+  {
+    "id": "cs-010",
+    "question": "What is the difference between override and new when redeclaring an inherited method?",
+    "options": [
+      "override replaces the implementation polymorphically; new only hides it for the derived reference type",
+      "new replaces the implementation polymorphically; override only hides it",
+      "override works only on abstract members; new works only on virtual ones",
+      "They compile to identical IL"
+    ],
+    "correctIndex": 0,
+    "explanation": "With override, calling through a base-class reference runs the derived version. With new, the base reference still runs the base version, which is a common source of surprises.",
+    "difficulty": "medium",
+    "tags": ["inheritance", "polymorphism"]
+  },
+  {
+    "id": "cs-011",
+    "question": "What does List<T> give you that an array does not?",
+    "options": [
+      "It grows and shrinks as items are added and removed",
+      "It stores items without boxing them",
+      "It keeps the items permanently sorted",
+      "It is a value type, so each copy is independent"
+    ],
+    "correctIndex": 0,
+    "explanation": "A List<T> wraps an array and reallocates a larger one when it fills up. Both store value types without boxing, and neither sorts on your behalf.",
+    "difficulty": "easy",
+    "tags": ["collections"]
+  },
+  {
+    "id": "cs-012",
+    "question": "How does First() differ from FirstOrDefault()?",
+    "options": [
+      "First() returns null when the sequence is empty",
+      "First() throws when the sequence is empty; FirstOrDefault() returns the default value",
+      "FirstOrDefault() throws when more than one item matches",
+      "They differ only when the element type is a reference type"
+    ],
+    "correctIndex": 1,
+    "explanation": "First() expresses an expectation that something is there, so an empty sequence is a bug worth an exception. FirstOrDefault() treats emptiness as normal.",
+    "difficulty": "medium",
+    "tags": ["linq"]
+  },
+  {
+    "id": "cs-013",
+    "question": "What does the generic constraint `where T : class` require?",
+    "options": [
+      "That T is a reference type",
+      "That T has a parameterless constructor",
+      "That T is a sealed class",
+      "That T is a value type"
+    ],
+    "correctIndex": 0,
+    "explanation": "The constraint lets the compiler assume T can be null and assigned to object. `where T : new()` is the one that demands a parameterless constructor.",
+    "difficulty": "medium",
+    "tags": ["generics"]
+  },
+  {
+    "id": "cs-014",
+    "question": "What does ConfigureAwait(false) do?",
+    "options": [
+      "Cancels the awaited task if it runs too long",
+      "Forces the continuation onto the UI thread",
+      "Runs the awaited operation synchronously",
+      "Resumes on a thread-pool thread instead of capturing the original context"
+    ],
+    "correctIndex": 3,
+    "explanation": "Library code uses it to avoid the cost, and the deadlock risk, of marshalling back to a context it does not care about. In ASP.NET Core there is no such context to capture.",
+    "difficulty": "hard",
+    "tags": ["async"]
+  },
+  {
+    "id": "cs-015",
+    "question": "What does declaring a type as a record give you automatically?",
+    "options": [
+      "Value-based equality, a readable ToString, and deconstruction",
+      "Thread safety across all members",
+      "Automatic JSON serialization",
+      "Runtime-enforced immutability of every field"
+    ],
+    "correctIndex": 0,
+    "explanation": "Records generate Equals, GetHashCode, ToString, and a copy constructor for `with` expressions. Immutability comes from using init accessors, not from the record keyword itself.",
+    "difficulty": "medium",
+    "tags": ["records", "equality"]
+  },
+  {
+    "id": "cs-016",
+    "question": "What does `a ?? b` evaluate to?",
+    "options": [
+      "b if a is null, otherwise a",
+      "a if a is null, otherwise b",
+      "true when either operand is null",
+      "b only when both operands are null"
+    ],
+    "correctIndex": 0,
+    "explanation": "The null-coalescing operator returns its left operand unless that operand is null, in which case it evaluates and returns the right one.",
+    "difficulty": "easy",
+    "tags": ["operators", "nullability"]
+  },
+  {
+    "id": "cs-017",
+    "question": "Inside a catch block, how does `throw;` differ from `throw ex;`?",
+    "options": [
+      "`throw ex;` is required in order to preserve the inner exception",
+      "`throw;` swallows the exception unless it is fatal",
+      "`throw;` rethrows and keeps the original stack trace; `throw ex;` resets it",
+      "They compile to identical IL"
+    ],
+    "correctIndex": 2,
+    "explanation": "Rethrowing with a bare `throw;` preserves where the exception actually came from. `throw ex;` restarts the trace at the catch block, discarding the original call site.",
+    "difficulty": "medium",
+    "tags": ["exceptions"]
+  },
+  {
+    "id": "cs-018",
+    "question": "Why would you implement an interface member explicitly?",
+    "options": [
+      "To make the member callable only through the interface, which resolves name collisions",
+      "To make the member virtual automatically",
+      "To allow the interface member to be static",
+      "To generate a public property of the same name"
+    ],
+    "correctIndex": 0,
+    "explanation": "An explicit implementation is not part of the class's public surface, so two interfaces can declare the same member name and each gets its own implementation.",
+    "difficulty": "medium",
+    "tags": ["interfaces"]
+  },
+  {
+    "id": "cs-019",
+    "question": "How does implementing IDisposable differ from writing a finalizer?",
+    "options": [
+      "A finalizer runs deterministically, while Dispose runs whenever the GC decides",
+      "Dispose is called deterministically by your code; a finalizer runs at the garbage collector's discretion",
+      "Both run at precisely the same moment",
+      "A finalizer is mandatory whenever a type implements IDisposable"
+    ],
+    "correctIndex": 1,
+    "explanation": "Deterministic cleanup is the entire point of Dispose. A finalizer is only a safety net for unmanaged resources, and it delays collection, so most types should not have one.",
+    "difficulty": "hard",
+    "tags": ["idisposable", "memory"]
+  },
+  {
+    "id": "cs-020",
+    "question": "What distinguishes a switch expression from a switch statement?",
+    "options": [
+      "A switch expression produces a value, so every arm must return one",
+      "A switch expression can only match on integers",
+      "A switch expression permits fallthrough between arms",
+      "A switch expression cannot use patterns"
+    ],
+    "correctIndex": 0,
+    "explanation": "Because it is an expression it can be assigned or returned directly, and the compiler warns when the arms do not cover every input.",
+    "difficulty": "medium",
+    "tags": ["pattern-matching"]
+  },
+  {
+    "id": "cs-021",
+    "question": "What does `var` do to a variable's type?",
+    "options": [
+      "Nothing; the type is inferred at compile time and remains static",
+      "It makes the variable dynamically typed at runtime",
+      "It types the variable as object",
+      "It lets the variable hold a different type later"
+    ],
+    "correctIndex": 0,
+    "explanation": "`var` is shorthand for a type the compiler can already see. `dynamic` is the keyword that defers type resolution to runtime.",
+    "difficulty": "easy",
+    "tags": ["types"]
+  },
+  {
+    "id": "cs-022",
+    "question": "What does Func<int, string> represent?",
+    "options": [
+      "A method taking a string and returning an int",
+      "A method taking an int and returning a string",
+      "A method taking an int and a string, returning void",
+      "A string property indexed by an int"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Func<>, the final type argument is the return type and the earlier ones are the parameters. Action<> is the equivalent for methods returning void.",
+    "difficulty": "medium",
+    "tags": ["delegates"]
+  },
+  {
+    "id": "cs-023",
+    "question": "In modern C#, what does a lambda declared inside a foreach loop capture?",
+    "options": [
+      "One shared loop variable, so every lambda sees the final value",
+      "A fresh variable for each iteration, so each lambda keeps its own value",
+      "A copy of the entire collection",
+      "Nothing; lambdas cannot capture loop variables"
+    ],
+    "correctIndex": 1,
+    "explanation": "The foreach variable is scoped per iteration, so closures behave as you would expect. A classic `for` loop still shares one variable, which is where surprising captures come from.",
+    "difficulty": "hard",
+    "tags": ["closures", "lambdas"]
+  },
+  {
+    "id": "cs-024",
+    "question": "Why prefer StringBuilder over += when building a long string in a loop?",
+    "options": [
+      "Each += allocates a whole new string, so the loop's cost grows quadratically",
+      "+= is not permitted inside a loop body",
+      "StringBuilder stores text in a more compact encoding",
+      "+= silently truncates strings beyond 4000 characters"
+    ],
+    "correctIndex": 0,
+    "explanation": "Strings are immutable, so repeated concatenation copies everything accumulated so far on every pass. StringBuilder mutates a single reusable buffer.",
+    "difficulty": "medium",
+    "tags": ["strings", "performance"]
+  },
+  {
+    "id": "cs-025",
+    "question": "What does the null-forgiving operator, as in `x!`, actually do?",
+    "options": [
+      "Throws immediately if x is null",
+      "Converts x into a non-nullable value type",
+      "Replaces x with its default value when it is null",
+      "Suppresses the compiler's null warning, adding no runtime check at all"
+    ],
+    "correctIndex": 3,
+    "explanation": "It is an assertion aimed at the compiler and nothing more. If the assertion is wrong you still get a NullReferenceException at runtime.",
+    "difficulty": "medium",
+    "tags": ["nullability"]
+  }
+]
