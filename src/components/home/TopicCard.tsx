@@ -12,7 +12,7 @@ export function TopicCard({ topic, summary }: { topic: Topic; summary: TopicSumm
     <>
       <div className="flex items-center gap-2">
         <span className={`h-2 w-2 shrink-0 rounded-full ${accent.dot}`} />
-        <h3 className="font-semibold text-slate-900 dark:text-slate-50">{topic.name}</h3>
+        <h3 className="text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-50">{topic.name}</h3>
       </div>
 
       <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{topic.blurb}</p>
@@ -38,12 +38,12 @@ export function TopicCard({ topic, summary }: { topic: Topic; summary: TopicSumm
     </>
   );
 
-  const shell = 'block rounded-2xl border p-4 text-left transition-colors';
+  const shell = 'block rounded-2xl p-5 text-left transition-colors';
 
   if (isEmpty) {
     return (
       <div
-        className={`${shell} border-dashed border-slate-300 bg-transparent opacity-70 dark:border-slate-700`}
+        className={`${shell} bg-slate-100 opacity-70 dark:bg-slate-800/60`}
       >
         {body}
       </div>
@@ -53,7 +53,7 @@ export function TopicCard({ topic, summary }: { topic: Topic; summary: TopicSumm
   return (
     <Link
       to={`/topic/${topic.id}`}
-      className={`${shell} border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-800/60`}
+      className={`${shell} bg-white hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800`}
     >
       {body}
     </Link>

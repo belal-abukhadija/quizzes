@@ -33,7 +33,7 @@ export function ResultsPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold tracking-tight">Results</h1>
+      <h1 className="wb-title">Results</h1>
 
       <ScoreSummary attempt={attempt} />
 
@@ -60,7 +60,7 @@ export function ResultsPage() {
               return (
                 <li
                   key={answer.questionId}
-                  className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400"
+                  className="rounded-2xl bg-white p-4 text-sm text-slate-600 dark:bg-slate-900 dark:text-slate-400"
                 >
                   Question {index + 1} is no longer available.
                 </li>

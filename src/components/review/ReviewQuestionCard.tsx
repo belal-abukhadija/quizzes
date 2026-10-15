@@ -15,7 +15,7 @@ export function ReviewQuestionCard({
   action?: ReactNode;
 }) {
   return (
-    <li className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+    <li className="rounded-2xl bg-white p-4 dark:bg-slate-900">
       <div className="mb-2 flex items-start justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <Pill>{topicName}</Pill>

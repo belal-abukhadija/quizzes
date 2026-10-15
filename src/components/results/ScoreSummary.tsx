@@ -7,7 +7,7 @@ export function ScoreSummary({ attempt }: { attempt: Attempt }) {
   const pct = percentage(attempt.correct, attempt.total);
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+    <div className="rounded-2xl bg-white p-5 dark:bg-slate-900">
       <div className="flex items-end justify-between gap-4">
         <div>
           <p className="text-sm text-slate-500 dark:text-slate-400">{attempt.label}</p>

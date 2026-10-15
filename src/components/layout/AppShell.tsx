@@ -24,10 +24,10 @@ function NavItem({
       to={to}
       aria-label={label}
       className={({ isActive }) =>
-        `inline-flex items-center gap-1.5 rounded-xl px-2 py-2.5 text-sm transition-colors ${
+        `inline-flex min-h-10 items-center gap-1.5 rounded-full px-3 text-sm font-medium transition-colors sm:px-4 ${
           isActive
-            ? 'font-medium text-slate-900 dark:text-slate-100'
-            : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
+            ? 'bg-slate-900 text-slate-50 dark:bg-slate-100 dark:text-slate-950'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100'
         }`
       }
     >
@@ -42,19 +42,26 @@ export function AppShell() {
   const { mistakes } = useProgress();
 
   return (
-    <div className="min-h-full">
-      <header className="sticky top-0 z-10 border-b border-slate-200 bg-slate-50/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
-        <div className="mx-auto flex max-w-page items-center gap-0.5 px-4 py-2">
-          <NavLink
-            to="/"
-            className="mr-auto min-w-0 truncate pr-2 text-sm font-semibold tracking-tight sm:text-base"
-          >
-            Exam Prep
-          </NavLink>
+    <div className="flex min-h-full flex-col">
+      <header className="wb-bar w-full" style={{ maxWidth: '44rem' }}>
+        <NavLink to="/" className="wb-brand mr-auto">
+          <span className="wb-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 9a3 3 0 1 1 4 2.83c-.6.22-1 .8-1 1.42V14" />
+              <path d="M12 17.5h.01" />
+              <rect x="3" y="3" width="18" height="18" rx="4" />
+            </svg>
+          </span>
+          <span className="wb-brand-text">
+            <span className="wb-brand-name">Exam Prep</span>
+            <span className="wb-brand-owner">Belal&apos;s tools</span>
+          </span>
+        </NavLink>
 
+        <nav className="flex items-center gap-1" aria-label="Main">
           <NavItem to="/review" label="Mistakes" icon={<FlagIcon className="h-5 w-5" />}>
             {mistakes.length > 0 && (
-              <span className="text-xs tabular-nums text-slate-400 dark:text-slate-500">
+              <span className="rounded-full bg-accent px-1.5 text-xs font-semibold tabular-nums text-accent-ink">
                 {mistakes.length}
               </span>
             )}
@@ -64,19 +71,30 @@ export function AppShell() {
 
           <NavLink
             to="/settings"
-            className="rounded-xl p-2.5 text-slate-500 transition-colors hover:bg-slate-200/60 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+            className={({ isActive }) =>
+              `grid size-10 place-items-center rounded-full transition-colors ${
+                isActive
+                  ? 'bg-slate-900 text-slate-50 dark:bg-slate-100 dark:text-slate-950'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100'
+              }`
+            }
             aria-label="Settings"
           >
             <SlidersIcon className="h-5 w-5" />
           </NavLink>
 
           <ThemeToggle />
-        </div>
+        </nav>
       </header>
 
-      <main className="mx-auto max-w-page px-4 pb-16 pt-6">
+      <main className="mx-auto w-full max-w-page flex-1 px-4 pb-16 pt-2 sm:px-6">
         <Outlet />
       </main>
+
+      <footer className="wb-foot w-full" style={{ maxWidth: '44rem' }}>
+        <span>Made by <a href="mailto:belalabukhadija97@gmail.com">Belal</a></span>
+        <span>More free tools at <a href="https://belal.work" target="_blank" rel="noopener noreferrer">belal.work</a></span>
+      </footer>
     </div>
   );
 }

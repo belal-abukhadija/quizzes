@@ -32,7 +32,7 @@ export function SettingsPage() {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
+      <h1 className="wb-title">Settings</h1>
 
       <Field label="Appearance">
         <SegmentedControl

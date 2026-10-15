@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0f172a" />
-    <title>Quiz — Exam Prep</title>
+    <meta name="theme-color" content="#eceef0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300..700&display=swap" rel="stylesheet" />
+    <title>Exam Prep</title>
     <script>
       // Applied before first paint so a dark-mode device never flashes light.
       (function () {
@@ -16,14 +20,14 @@
               ? 'dark'
               : 'light';
           }
-          if (theme === 'dark') document.documentElement.classList.add('dark');
+          document.documentElement.classList.add(theme === 'dark' ? 'dark' : 'light');
         } catch (e) {
           /* storage unavailable — fall through to light */
         }
       })();
     </script>
   </head>
-  <body class="h-full">
+  <body class="h-full wb">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

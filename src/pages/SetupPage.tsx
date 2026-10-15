@@ -125,8 +125,8 @@ export function SetupPage() {
       <div className="space-y-4">
         <BackLink />
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">{topic.name}</h1>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          <h1 className="wb-title">{topic.name}</h1>
+          <p className="wb-lede">
             {pluralise(available, 'question')} match your filters
           </p>
         </div>
@@ -179,7 +179,7 @@ export function SetupPage() {
               type="checkbox"
               checked={timerOn}
               onChange={(event) => setTimerOn(event.target.checked)}
-              className="h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-400 dark:border-slate-600 dark:bg-slate-800"
+              className="wb-check"
             />
             Auto-submit when time runs out
           </label>
@@ -198,7 +198,7 @@ export function SetupPage() {
                   setMinutes(Number.isFinite(next) && next > 0 ? Math.min(300, next) : 1);
                 }}
                 aria-label="Time limit in minutes"
-                className="w-20 rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm tabular-nums dark:border-slate-700 dark:bg-slate-900"
+                className="w-20 rounded-xl border-0 bg-slate-100 px-3 py-2.5 text-sm tabular-nums dark:bg-slate-800"
               />
               <span className="text-sm text-slate-500 dark:text-slate-400">
                 minutes{!minutesTouched && ' (suggested)'}

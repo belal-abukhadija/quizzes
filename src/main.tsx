@@ -6,6 +6,7 @@ import { ErrorBoundary } from './components/layout/ErrorBoundary';
 import { SettingsProvider } from './state/SettingsContext';
 import { ProgressProvider } from './state/ProgressContext';
 import { SessionProvider } from './state/SessionContext';
+import './styles/wb.css';
 import './index.css';
 
 const container = document.getElementById('root');

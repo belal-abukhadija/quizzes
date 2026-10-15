@@ -29,7 +29,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, { failed: 
         <button
           type="button"
           onClick={() => window.location.assign('/')}
-          className="mt-5 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white dark:bg-slate-100 dark:text-slate-900"
+          className="mt-5 min-h-11 rounded-full bg-accent px-5 text-sm font-semibold text-accent-ink"
         >
           Reload
         </button>

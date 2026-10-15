@@ -9,7 +9,7 @@ export function Card({
 }) {
   return (
     <div
-      className={`rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 ${className}`}
+      className={`rounded-2xl bg-white p-4 dark:bg-slate-900 ${className}`}
     >
       {children}
     </div>
@@ -18,7 +18,7 @@ export function Card({
 
 export function SectionHeading({ children }: { children: ReactNode }) {
   return (
-    <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+    <h2 className="mb-3 text-base font-semibold text-slate-900 dark:text-slate-100">
       {children}
     </h2>
   );

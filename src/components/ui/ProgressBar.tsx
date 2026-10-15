@@ -13,7 +13,7 @@ export function ProgressBar({
 
   return (
     <div
-      className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800"
+      className="h-2 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700"
       role="progressbar"
       aria-valuenow={value}
       aria-valuemin={0}

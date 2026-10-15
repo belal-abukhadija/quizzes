@@ -19,7 +19,7 @@ export function StatsPage() {
   if (attempts.length === 0) {
     return (
       <div className="space-y-5">
-        <h1 className="text-2xl font-semibold tracking-tight">Stats</h1>
+        <h1 className="wb-title">Stats</h1>
         <EmptyState
           title="No attempts yet"
           description="Finish a quiz and your accuracy, history, and weakest tags will appear here."
@@ -43,8 +43,8 @@ export function StatsPage() {
   return (
     <div className="space-y-7">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Stats</h1>
-        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+        <h1 className="wb-title">Stats</h1>
+        <p className="wb-lede">
           {percentage(totalCorrect, totalAnswered)}% overall across{' '}
           {pluralise(attempts.length, 'attempt')}
         </p>
@@ -87,7 +87,7 @@ export function StatsPage() {
             {tags.map((tag) => (
               <li
                 key={tag.tag}
-                className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm dark:border-slate-800 dark:bg-slate-900"
+                className="flex items-center justify-between gap-3 rounded-xl bg-white px-3.5 py-2.5 text-sm dark:bg-slate-900"
               >
                 <span className="font-medium">{tag.tag}</span>
                 <span className="tabular-nums text-slate-500 dark:text-slate-400">
@@ -101,7 +101,7 @@ export function StatsPage() {
 
       <section>
         <SectionHeading>Recent attempts</SectionHeading>
-        <ul className="divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900">
+        <ul className="divide-y divide-slate-100 overflow-hidden rounded-2xl bg-white dark:divide-slate-800 dark:bg-slate-900">
           {history.map((attempt) => (
             <li key={attempt.id} className="flex items-center justify-between gap-3 px-3.5 py-3">
               <div className="min-w-0">

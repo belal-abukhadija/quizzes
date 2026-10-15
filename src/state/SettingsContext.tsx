@@ -34,6 +34,8 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDark);
+    // Explicit light class too, so the shared stylesheet does not follow a dark OS setting.
+    document.documentElement.classList.toggle('light', !isDark);
   }, [isDark]);
 
   const update = useCallback((patch: Partial<QuizSettings>) => {

@@ -79,8 +79,8 @@ export function ReviewPage() {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Review</h1>
-        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+        <h1 className="wb-title">Review</h1>
+        <p className="wb-lede">
           Questions leave this list as soon as you answer them correctly.
         </p>
       </div>

@@ -20,10 +20,10 @@ export function BreakdownItem({
 }) {
   return (
     <li
-      className={`rounded-2xl border p-4 ${
+      className={`rounded-2xl p-4 ${
         answer.correct
-          ? 'border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900'
-          : 'border-red-200 bg-red-50/40 dark:border-red-900/70 dark:bg-red-950/10'
+          ? 'bg-white dark:bg-slate-900'
+          : 'bg-danger-wash'
       }`}
     >
       <div className="mb-2 flex items-center gap-2 text-xs font-medium">
